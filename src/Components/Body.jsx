@@ -1,9 +1,10 @@
 import RestaurantCard from "./RestaurantCard";
-import resList from "../utils/mockData";
+//import resList from "../utils/mockData";
 import { useState } from "react";
 import { useEffect } from "react";
 import Shimmer from "./Shimmer";
 import { Link } from "react-router-dom"
+import useOnlineStatus from "../utils/useOnlineStatus"
 
 const Body = () => {
   const [restaurantList, setRestaurantList] = useState([]);
@@ -16,13 +17,17 @@ const Body = () => {
   }, []);
 
   const fetchData = async () => {
-    const data = await new Promise((resolve) => {
-      setTimeout(resolve, 1000, resList);
-    });
+    const res = await fetch("http://localhost:3000/api/restaurants")
+    const data = await res.json() // deserialising using json()
 
     setRestaurantList(data);
     setFilteredResList(data);
   };
+  
+const onlineStatus = useOnlineStatus();
+
+if(onlineStatus === false) return <h1>Looks like you are offline!!
+   Check your internet connection</h1>
 
   // Conditional Rendering
   //if(restaurantList.length === 0){
@@ -33,16 +38,16 @@ const Body = () => {
     <Shimmer />
   ) : (
     <div className="body">
-      <div className="filter">
-        <div className="search">
+      <div className="filter flex">
+        <div className="search m-4 p-4">
           <input
             type="text"
-            className="search-btn"
+            className="border border-solid border-black"
             value={searchText}
             onChange={(e) => setSearchText(e.target.value)}
           />
 
-          <button
+          <button className = "px-4 py-2 bg-cyan-600 m-4"
             onClick={() => {
               const filteredRes = restaurantList.filter((res) =>
                 res.data.data.name
@@ -55,8 +60,9 @@ const Body = () => {
             Search
           </button>
         </div>
+        <div className = "flex items-center">
         <button
-          className="filter-btn"
+          className="px-4 py-2 bg-cyan-300"
           onClick={() => {
             const filteredList = restaurantList.filter(
               (res) => res.data.data.avgRating > 4
@@ -66,8 +72,10 @@ const Body = () => {
         >
           Top Rated Restaurant
         </button>
+        </div>
+       
       </div>
-      <div className="res-container">
+      <div className="flex flex-wrap">
         {filteredResList.map((res) => (
          <Link key={res.data.data.id} to={ "/restaurants/" +res.data.data.id}> 
          <RestaurantCard  resData={res} />
