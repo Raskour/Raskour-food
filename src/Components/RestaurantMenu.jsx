@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import {CDN_URL} from "../utils/constants"
-import getRestaurantById from "../utils/getMenuByRes";
 import { useParams } from "react-router-dom";
 
 const RestaurantMenu = () => {
@@ -16,7 +15,10 @@ const RestaurantMenu = () => {
   }, []);
 
   const fetchResById = async function(resId){
-    const data = await getRestaurantById(resId)
+    const res = await fetch("http://localhost:3000/api/restaurants/" + resId);
+    const data = await res.json();
+
+
     setRes(data);
   };
 
