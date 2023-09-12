@@ -45,6 +45,10 @@ const RestaurantMenu = () => {
               <h4>{item.title}</h4>
               <strong>{item.price}</strong>
               <p>{item.description}</p>
+              <img src={
+          CDN_URL + item.imageId
+    }/>
+    <button>Add</button>
             </li>
           ))}
         </ul>

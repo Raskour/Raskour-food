@@ -66,7 +66,7 @@ if(onlineStatus === false) return <h1>Looks like you are offline!!
             const filteredList = restaurantList.filter(
               (res) => res.data.data.avgRating > 4
             );
-            setRestaurantList(filteredList);
+            setFilteredResList(filteredList);
           }}
         >
           Top Rated Restaurant
