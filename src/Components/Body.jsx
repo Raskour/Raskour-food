@@ -2,8 +2,8 @@ import RestaurantCard from "./RestaurantCard";
 import { useState } from "react";
 import { useEffect } from "react";
 import Shimmer from "./Shimmer";
-import { Link } from "react-router-dom"
-import useOnlineStatus from "../utils/useOnlineStatus"
+import { Link } from "react-router-dom";
+import useOnlineStatus from "../utils/useOnlineStatus";
 
 const Body = () => {
   const [restaurantList, setRestaurantList] = useState([]);
@@ -16,22 +16,17 @@ const Body = () => {
   }, []);
 
   const fetchData = async () => {
-    const res = await fetch("http://localhost:3000/api/restaurants")
-    const data = await res.json() // deserialising using json()
+    const res = await fetch("http://localhost:3000/api/restaurants");
+    const data = await res.json(); // deserialising using json()
 
     setRestaurantList(data);
     setFilteredResList(data);
   };
-  
-const onlineStatus = useOnlineStatus();
 
-if(onlineStatus === false) return <h1>Looks like you are offline!!
-   Check your internet connection</h1>
+  const onlineStatus = useOnlineStatus();
 
-  // Conditional Rendering
-  //if(restaurantList.length === 0){
-  // return <Shimmer/>
-  //}
+  if (onlineStatus === false)
+    return <h1>Looks like you are offline!! Check your internet connection</h1>;
 
   return restaurantList.length === 0 ? (
     <Shimmer />
@@ -46,12 +41,11 @@ if(onlineStatus === false) return <h1>Looks like you are offline!!
             onChange={(e) => setSearchText(e.target.value)}
           />
 
-          <button className = "px-4 py-2 bg-cyan-600 m-4"
+          <button
+            className="px-4 py-2 bg-cyan-600 m-4"
             onClick={() => {
               const filteredRes = restaurantList.filter((res) =>
-                res.data.data.name
-                  .toLowerCase()
-                  .includes(searchText.toLowerCase())
+                res.name.toLowerCase().includes(searchText.toLowerCase())
               );
               setFilteredResList(filteredRes);
             }}
@@ -59,26 +53,25 @@ if(onlineStatus === false) return <h1>Looks like you are offline!!
             Search
           </button>
         </div>
-        <div className = "flex items-center">
-        <button
-          className="px-4 py-2 bg-cyan-300"
-          onClick={() => {
-            const filteredList = restaurantList.filter(
-              (res) => res.data.data.avgRating > 4
-            );
-            setFilteredResList(filteredList);
-          }}
-        >
-          Top Rated Restaurant
-        </button>
+        <div className="flex items-center">
+          <button
+            className="px-4 py-2 bg-cyan-300"
+            onClick={() => {
+              const filteredList = restaurantList.filter(
+                (res) => res.avgRating > 4
+              );
+              setFilteredResList(filteredList);
+            }}
+          >
+            Top Rated Restaurant
+          </button>
         </div>
-       
       </div>
       <div className="flex flex-wrap">
         {filteredResList.map((res) => (
-         <Link key={res.data.data.id} to={ "/restaurants/" +res.data.data.id}> 
-         <RestaurantCard  resData={res} />
-         </Link>
+          <Link key={res.id} to={"/restaurants/" + res.id}>
+            <RestaurantCard resData={res} />
+          </Link>
         ))}
       </div>
     </div>

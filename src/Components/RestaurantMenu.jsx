@@ -28,8 +28,6 @@ const RestaurantMenu = () => {
     setRes(data);
   };
 
-
-
   // approach 1. using JS Array find method
   // const res = resList.find((res) => res.data.data.id === resId);
 
@@ -39,16 +37,13 @@ const RestaurantMenu = () => {
     <div>
       <h1>Restaurant Menu page</h1>
       <article className="res-menu">
-        <img
-          className="res-logo"
-          src={CDN_URL + res.data.data.cloudinaryImageId}
-        />
-        <h2>{res.data.data.name}</h2>
-        <h3>{res.data.data.avgRating}</h3>
+        <img className="res-logo" src={CDN_URL + res.cloudinaryImageId} />
+        <h2>{res.name}</h2>
+        <h3>{res.avgRating}</h3>
         <h3>Menu</h3>
         <ul>
-          {res.data.data.menu.map((item, index) => (
-            <li key={index}>
+          {res.menu.map((item) => (
+            <li key={item.id}>
               <h4>{item.title}</h4>
               <strong>{item.price}</strong>
               <p>{item.description}</p>
