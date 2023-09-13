@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { CDN_URL } from "../utils/constants";
 import { useParams } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { addItems } from "../utils/cartSlice";
+import { addItem } from "../utils/cartSlice";
 
 const RestaurantMenu = () => {
   // Approach 2. using fake API that will get us Restaurant by id from remote server
@@ -14,7 +14,7 @@ const RestaurantMenu = () => {
   const dispatch = useDispatch(); // this is a hook
 
   const handleAddItem = (item) => {
-    dispatch(addItems(item));
+    dispatch(addItem(item));
   };
   useEffect(() => {
     // Making fetch req to fetch single restaurant based on the restaurant Id.

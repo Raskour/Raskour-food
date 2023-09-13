@@ -20,6 +20,6 @@ reducers: {
 
 });
 
-export const {addItems, removeItems, clearCart} = cartSlice.actions;
+export const {addItem, removeItem, clearCart} = cartSlice.actions;
 
 export default cartSlice.reducer;
