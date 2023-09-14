@@ -1,51 +1,38 @@
-import { LOGO_URL } from "../utils/constants";
-import { useState } from "react";
 import { Link } from "react-router-dom";
-import useOnlineStatus from "../utils/useOnlineStatus"; // this is a custom hook
 import { useSelector } from "react-redux";
 
+import { LOGO_URL } from "../utils/constants";
 
 function Header() {
-  const [btnName, setBtnName] = useState("Login");
+  // subscribing to the store using a selector
+  const cartItems = useSelector((store) => store.cart.items);
 
-  const onlineStatus = useOnlineStatus();
+  return (
+    <header className="flex justify-between items-center shadow-lg ">
+      <a href="/" className="flex items-center">
+        <img src={LOGO_URL} width={100} />
+        <span>
+          <b>Ras Food</b>
+        </span>
+      </a>
 
-// subscribing to the store using a selector
-const cartItems = useSelector((store) => store.cart.items);
- 
-
-return (
-    <header className="flex justify-between bg-pink-200 shadow-lg ">
-      <div className="logo-container">
-        <img className="logo" src={LOGO_URL} />
-      </div>
       <nav className="flex items-center">
         <ul className="flex p-4 m-4">
           <li className="px-4">
-            {" "}
-            Online Status
-            {onlineStatus ? "✅" : "🔴"}
+            <Link to="/" className="font-bold hover:underline px-2 py-1">
+              Home
+            </Link>
           </li>
           <li className="px-4">
-            <Link to="/">Home</Link>
+            <Link to="/contact" className="font-bold hover:underline px-2 py-1">
+              Help
+            </Link>
           </li>
           <li className="px-4">
-            <Link to="/about">About</Link>
+            <Link to="/cart" className="font-bold hover:underline px-2 py-1">
+              Cart-({cartItems.length})
+            </Link>
           </li>
-          <li className="px-4">
-            <Link to="/contact">Contact Us</Link>
-          </li>
-          <li className="px-4">
-          <Link to="/cart"> Cart-({cartItems.length})</Link>
-           </li>
-          <button
-            className="login"
-            onClick={() => {
-              btnName === "Login" ? setBtnName("Logout") : setBtnName("Login");
-            }}
-          >
-            {btnName}
-          </button>
         </ul>
       </nav>
     </header>

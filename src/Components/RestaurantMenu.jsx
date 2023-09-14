@@ -35,23 +35,30 @@ const RestaurantMenu = () => {
     <SingleShimmer />
   ) : (
     <div>
-      <h1>Restaurant Menu page</h1>
-      <article className="res-menu">
-        <img className="res-logo" src={CDN_URL + res.cloudinaryImageId} />
-        <h2>{res.name}</h2>
-        <h3>{res.avgRating}</h3>
-        <h3>Menu</h3>
-        <ul>
-          {res.menu.map((item) => (
-            <li key={item.id}>
-              <h4>{item.title}</h4>
-              <strong>{item.price}</strong>
-              <p>{item.description}</p>
-              <img src={CDN_URL + item.imageId} />
-              <button onClick={() => handleAddItem(item)}>Add</button>
-            </li>
-          ))}
-        </ul>
+      <article>
+        <h1>
+          <strong>{res.name}</strong>
+        </h1>
+
+        <h2>{res.avgRating}- star</h2>
+        <h2>Menu</h2>
+        <br></br>
+        <div>
+          <ul>
+            {res.menu.map((item) => (
+              <li key={item.id}>
+                <img src={CDN_URL + item.imageId} />
+                <h3>
+                  <strong>{item.title}</strong>
+                </h3>
+                <strong>Rs.{item.price}</strong>
+                <p>{item.description}</p>
+
+                <button onClick={() => handleAddItem(item)}>Add</button>
+              </li>
+            ))}
+          </ul>
+        </div>
       </article>
     </div>
   );

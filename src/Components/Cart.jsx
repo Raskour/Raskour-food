@@ -1,12 +1,10 @@
 import { useDispatch, useSelector } from "react-redux";
 import { CDN_URL } from "../utils/constants";
-import { removeItem } from "../utils/cartSlice";
+import { removeItem, addItem, clearCart } from "../utils/cartSlice";
+import { Link } from "react-router-dom";
 
 const Cart = () => {
   const cartItems = useSelector((store) => store.cart.items);
-
-  console.log(cartItems);
-
   const dispatch = useDispatch();
 
   function getTotalPrice() {
@@ -21,11 +19,24 @@ const Cart = () => {
     dispatch(removeItem(id));
   }
 
+  function handleClearCart() {
+    dispatch(clearCart());
+  }
+
+  if (cartItems.length === 0) {
+    return (
+      <h2>
+        Your cart is empty. Please add some items by visiting{" "}
+        <Link to="/">home</Link>
+      </h2>
+    );
+  }
+
   return (
     <div className="text-center m-4 p-4">
       <h1 className="text-2xl font-bold">Cart</h1>
       <div>
-        <button>Clear Cart</button>
+        <button onClick={handleClearCart}>Clear Cart</button>
       </div>
       <div>
         <ul>
