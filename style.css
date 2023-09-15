@@ -6,11 +6,6 @@
   box-sizing: border-box;
 }
 
-/* Removing user agent default margin */
-:where(body, h1, h2, h3, h4, ul, p) {
-  margin: 0;
-}
-
 :root {
   --page-max-width: 980px;
   --button-width: 120px;
@@ -24,7 +19,7 @@
   --font-weight-reg: 400;
   --font-weight-bold: 700;
   --color-primary: rgb(220, 56, 19);
-  --color-secondary: rgb(238, 213, 174);
+  --color-secondary: rgb(245, 231, 225);
   --color-tertiary: rgb(7, 122, 153);
   --color-neutral: rgb(66, 71, 84);
   --box-shadow-subtle: 0 2px 2px #000;
@@ -33,6 +28,12 @@
 
   --box-shadow-sm: 0 5px 5px 2px hsla(225, 55%, 9%, 8%);
   --box-shadow-md: 0 16px 32px 0 rgba(10, 16, 34, 0.2), 0 0 0 transparent;
+}
+
+/* Removing user agent default margin */
+:where(body, h1, h2, h3, h4, ul, p) {
+  margin: 0;
+  padding: 0;
 }
 
 body {
@@ -49,6 +50,10 @@ body {
 img {
   display: block;
   max-width: 100%;
+}
+
+li {
+  list-style-type: none;
 }
 
 /* Inherit fonts for inputs and buttons */
@@ -93,7 +98,7 @@ a {
 
 /* Skip link styles */
 .skip-link:not(:focus),
-.visually-hidden {
+.sr-only {
   border: 0;
   clip: rect(0 0 0 0);
   height: auto;
@@ -124,6 +129,12 @@ header {
   align-items: center;
   flex-direction: column;
   font-size: var(--font-size-md);
+  padding-block: 0.5rem;
+  box-shadow: rgba(27, 30, 36, 0.06) 0px 8px 16px,
+    rgba(27, 30, 36, 0.04) 0px 0px 8px;
+  position: sticky;
+  top: 0px;
+  background-color: var(--header-bg-color, #fff);
 }
 
 header a:has(img) {
@@ -131,19 +142,13 @@ header a:has(img) {
   align-items: center;
   text-decoration: none;
   font-weight: var(--font-weight-bold);
-}
-
-a:has(img) {
+  gap: 0.25rem;
   font-size: var(--font-size-lg);
 }
 
 nav ul {
   display: flex;
   gap: 16px;
-}
-
-nav ul > li {
-  list-style-type: none;
 }
 
 nav li > a {
@@ -160,3 +165,26 @@ header a:focus {
 }
 
 /* header styling ends here */
+
+/* form search styles start ---- */
+form[role="search"] {
+  display: flex;
+  margin-block-start: 2rem;
+  gap: 0.25rem;
+  justify-content: center;
+}
+
+input[type="text"] {
+  flex-basis: min(90vw, 400px);
+}
+
+/* form search styles end ---- */
+
+/* divider */
+/* divider */
+.divider {
+  height: 1px;
+  background-color: grey;
+  margin-inline: auto;
+  margin-block: 1rem;
+}

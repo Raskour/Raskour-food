@@ -9,7 +9,7 @@ function Header() {
   return (
     <header>
       <a href="/" className="logo">
-        <img src={LOGO_URL} width={100} />
+        <img src="https://placehold.jp/50x50.png" />
         <span>Raskour Food</span>
       </a>
 

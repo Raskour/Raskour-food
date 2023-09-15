@@ -5,7 +5,7 @@ import Shimmer from "./Shimmer";
 import { Link } from "react-router-dom";
 import useOnlineStatus from "../utils/useOnlineStatus";
 
-const Body = () => {
+const Home = () => {
   const [restaurantList, setRestaurantList] = useState([]);
   const [filteredResList, setFilteredResList] = useState([]);
 
@@ -33,15 +33,20 @@ const Body = () => {
   ) : (
     <div>
       <div>
-        <div>
+        <form role="search">
+          <label className="sr-only" htmlFor="search">
+            Search Restaurant:
+          </label>
           <input
             type="text"
             value={searchText}
             onChange={(e) => setSearchText(e.target.value)}
+            id="search"
+            autoComplete="true"
           />
-
           <button
-            onClick={() => {
+            onClick={(event) => {
+              event.preventDefault();
               const filteredRes = restaurantList.filter((res) =>
                 res.name.toLowerCase().includes(searchText.toLowerCase())
               );
@@ -50,9 +55,11 @@ const Body = () => {
           >
             Search
           </button>
-        </div>
+        </form>
+        <h1 id="res-syd">Restaurants in Sydney</h1>
         <div>
           <button
+            className="secondary_btn"
             onClick={() => {
               const filteredList = restaurantList.filter(
                 (res) => res.avgRating > 4
@@ -60,18 +67,21 @@ const Body = () => {
               setFilteredResList(filteredList);
             }}
           >
-            Top Rated Restaurant
+            Top Restaurants
           </button>
         </div>
       </div>
-      <div>
+
+      <ul className="res_container" aria-labelledby="res-syd">
         {filteredResList.map((res) => (
-          <Link key={res.id} to={"/restaurants/" + res.id}>
-            <RestaurantCard resData={res} />
-          </Link>
+          <li key={res.id}>
+            <Link to={"/restaurants/" + res.id}>
+              <RestaurantCard resData={res} />
+            </Link>
+          </li>
         ))}
-      </div>
+      </ul>
     </div>
   );
 };
-export default Body;
+export default Home;
