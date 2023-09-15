@@ -33,8 +33,8 @@ const Cart = () => {
   }
 
   return (
-    <div className="text-center m-4 p-4">
-      <h1 className="text-2xl font-bold">Cart</h1>
+    <div>
+      <h1 className="">Cart</h1>
       <div>
         <button onClick={handleClearCart}>Clear Cart</button>
       </div>
@@ -64,7 +64,7 @@ const Cart = () => {
         </div>
         <div>
           <button>
-            <strong>Pay Now</strong>{" "}
+            <strong>Pay Now</strong>
           </button>
         </div>
       </div>

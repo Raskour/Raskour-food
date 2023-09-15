@@ -1,6 +1,5 @@
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
-
 import { LOGO_URL } from "../utils/constants";
 
 function Header() {
@@ -8,28 +7,28 @@ function Header() {
   const cartItems = useSelector((store) => store.cart.items);
 
   return (
-    <header className="flex justify-between items-center shadow-lg ">
-      <a href="/" className="flex items-center">
+    <header className=" ">
+      <a href="/" className="">
         <img src={LOGO_URL} width={100} />
         <span>
           <b>Ras Food</b>
         </span>
       </a>
 
-      <nav className="flex items-center">
-        <ul className="flex p-4 m-4">
-          <li className="px-4">
-            <Link to="/" className="font-bold hover:underline px-2 py-1">
+      <nav className="">
+        <ul className="">
+          <li className="">
+            <Link to="/" className="">
               Home
             </Link>
           </li>
-          <li className="px-4">
-            <Link to="/contact" className="font-bold hover:underline px-2 py-1">
+          <li className="">
+            <Link to="/contact" className="">
               Help
             </Link>
           </li>
-          <li className="px-4">
-            <Link to="/cart" className="font-bold hover:underline px-2 py-1">
+          <li className="">
+            <Link to="/cart" className="">
               Cart-({cartItems.length})
             </Link>
           </li>
