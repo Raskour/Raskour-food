@@ -32,7 +32,8 @@ const Home = () => {
     <Shimmer />
   ) : (
     <div>
-      <div>
+      <div className="search-container">
+        <h1 id="res-syd">Restaurants in Sydney</h1>
         <form role="search">
           <label className="sr-only" htmlFor="search">
             Search Restaurant:
@@ -56,25 +57,22 @@ const Home = () => {
             Search
           </button>
         </form>
-        <h1 id="res-syd">Restaurants in Sydney</h1>
-        <div>
-          <button
-            className="secondary_btn"
-            onClick={() => {
-              const filteredList = restaurantList.filter(
-                (res) => res.avgRating > 4
-              );
-              setFilteredResList(filteredList);
-            }}
-          >
-            Top Restaurants
-          </button>
-        </div>
       </div>
+      <button
+        className="top-res-btn"
+        onClick={() => {
+          const filteredList = restaurantList.filter(
+            (res) => res.avgRating > 4
+          );
+          setFilteredResList(filteredList);
+        }}
+      >
+        Top Restaurants
+      </button>
 
-      <ul className="res_container" aria-labelledby="res-syd">
+      <ul className="res-card-container" aria-labelledby="res-syd">
         {filteredResList.map((res) => (
-          <li key={res.id}>
+          <li key={res.id} className="res-card">
             <Link to={"/restaurants/" + res.id}>
               <RestaurantCard resData={res} />
             </Link>

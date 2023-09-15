@@ -7,7 +7,9 @@
 }
 
 :root {
-  --page-max-width: 980px;
+  --page-max-width: 1280px;
+  --input-width-lg: 400px;
+
   --button-width: 120px;
   --input-height: 40px; /* form input field */
   --font-size-sm: 0.85rem;
@@ -164,27 +166,89 @@ header a:focus {
   box-shadow: none;
 }
 
+.search-container {
+  display: flex;
+  align-items: center;
+  margin-block-start: 2rem;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
 /* header styling ends here */
 
 /* form search styles start ---- */
 form[role="search"] {
   display: flex;
-  margin-block-start: 2rem;
+  flex: 1;
   gap: 0.25rem;
-  justify-content: center;
+  justify-content: flex-end;
 }
 
 input[type="text"] {
-  flex-basis: min(90vw, 400px);
+  flex: 1;
+}
+
+@media (min-width: 920px) {
+  input[type="text"] {
+    flex-basis: 400px;
+    flex-grow: 0;
+  }
+
+  .search-container {
+    gap: 1.5rem;
+  }
 }
 
 /* form search styles end ---- */
 
-/* divider */
 /* divider */
 .divider {
   height: 1px;
   background-color: grey;
   margin-inline: auto;
   margin-block: 1rem;
+}
+
+/* Res card ---*/
+.res-card-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+}
+.res-card-container a {
+  text-decoration: none;
+}
+
+.res-card-container li {
+  flex-basis: min(100%, 300px);
+  flex-grow: 1;
+}
+
+.res-card {
+  display: flex;
+  border-radius: var(--border-radius-rg);
+  flex-direction: column;
+  overflow: hidden;
+  position: relative;
+  box-shadow: var(--box-shadow-sm);
+  transition: transform 0.2s ease 0s, box-shadow 0.2s ease 0s;
+  will-change: transform, box-shadow;
+}
+
+.res-card:hover {
+  box-shadow: var(--box-shadow-md);
+  transform: translateY(-5px) translateZ(0px);
+}
+
+.res-card-info {
+  display: flex;
+  flex-direction: column;
+  padding-block: 0.5rem;
+  padding-inline: 1rem;
+}
+
+.top-res-btn {
+  margin-block: 1rem;
+  margin-inline-start: auto;
 }
