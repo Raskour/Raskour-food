@@ -7,30 +7,22 @@ function Header() {
   const cartItems = useSelector((store) => store.cart.items);
 
   return (
-    <header className=" ">
-      <a href="/" className="">
+    <header>
+      <a href="/" className="logo">
         <img src={LOGO_URL} width={100} />
-        <span>
-          <b>Ras Food</b>
-        </span>
+        <span>Raskour Food</span>
       </a>
 
-      <nav className="">
-        <ul className="">
-          <li className="">
-            <Link to="/" className="">
-              Home
-            </Link>
+      <nav>
+        <ul>
+          <li>
+            <Link to="/">Home</Link>
           </li>
-          <li className="">
-            <Link to="/contact" className="">
-              Help
-            </Link>
+          <li>
+            <Link to="/contact">Help</Link>
           </li>
-          <li className="">
-            <Link to="/cart" className="">
-              Cart-({cartItems.length})
-            </Link>
+          <li>
+            <Link to="/cart">Cart-({cartItems.length})</Link>
           </li>
         </ul>
       </nav>

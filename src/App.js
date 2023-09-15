@@ -14,12 +14,8 @@ import Cart from "./Components/Cart";
 
 const PageLayout = ({ children }) => {
   return (
-    <main>
-      <div
-        style={{ maxWidth: 980, paddingInline: "24px", marginInline: "auto" }}
-      >
-        {children}
-      </div>
+    <main className="page_wrapper" id="main-content">
+      {children}
     </main>
   );
 };
