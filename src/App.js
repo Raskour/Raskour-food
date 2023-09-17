@@ -1,5 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
+import { Toaster } from "react-hot-toast";
+
 import Header from "./Components/Header";
 import Body from "./Components/Home";
 import Contact from "./Components/Contact";
@@ -26,6 +28,7 @@ function AppBody() {
       <div className="app">
         <Header />
         <Outlet />
+        <Toaster />
       </div>
     </Provider>
   );
@@ -59,7 +62,11 @@ const appRouter = createBrowserRouter([
       },
       {
         path: "/cart",
-        element: <Cart />,
+        element: (
+          <PageLayout>
+            <Cart />
+          </PageLayout>
+        ),
       },
     ],
     errorElement: <Error />,

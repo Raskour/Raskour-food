@@ -1,4 +1,6 @@
 import { useEffect, useState } from "react";
+import toast from "react-hot-toast";
+
 import { CDN_URL } from "../utils/constants";
 import { useParams } from "react-router-dom";
 import { useDispatch } from "react-redux";
@@ -15,6 +17,8 @@ const RestaurantMenu = () => {
 
   const handleAddItem = (item) => {
     dispatch(addItem(item));
+
+    toast.success("Item has been added successfully!");
   };
   useEffect(() => {
     // Making fetch req to fetch single restaurant based on the restaurant Id.
