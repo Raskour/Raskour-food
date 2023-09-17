@@ -3,8 +3,8 @@ import ReactDOM from "react-dom/client";
 import { Toaster } from "react-hot-toast";
 
 import Header from "./Components/Header";
-import Body from "./Components/Home";
-import Contact from "./Components/Contact";
+import Home from "./Components/Home";
+import Help from "./Components/Help";
 import Error from "./Components/Error";
 import RestaurantMenu from "./Components/RestaurantMenu";
 import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
@@ -43,14 +43,18 @@ const appRouter = createBrowserRouter([
         path: "/",
         element: (
           <PageLayout>
-            <Body />
+            <Home />
           </PageLayout>
         ),
       },
 
       {
-        path: "/contact",
-        element: <Contact />,
+        path: "/help",
+        element: (
+          <PageLayout>
+            <Help />
+          </PageLayout>
+        ),
       },
       {
         path: "/restaurants/:resId",

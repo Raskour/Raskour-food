@@ -197,6 +197,7 @@ header a:has(img) {
   font-weight: var(--font-weight-bold);
   gap: 0.25rem;
   font-size: var(--font-size-lg);
+  color: var(--color-primary);
 }
 
 nav ul {
@@ -412,4 +413,14 @@ input[type="text"] {
   justify-content: flex-end;
   gap: 1.25rem;
   align-items: center;
+}
+
+.empty-cart h1 {
+  font-size: var(--font-size-md);
+  color: var(--color-neutral);
+}
+
+/* Help page */
+.help {
+  max-width: 60ch;
 }

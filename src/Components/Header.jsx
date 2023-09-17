@@ -19,7 +19,7 @@ function Header() {
               <Link to="/">Home</Link>
             </li>
             <li>
-              <Link to="/contact">Help</Link>
+              <Link to="/help">Help</Link>
             </li>
             <li>
               <Link to="/cart">Cart-({cartItems.length})</Link>

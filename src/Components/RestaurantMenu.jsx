@@ -57,12 +57,7 @@ const RestaurantMenu = () => {
                 </div>
                 <div className="res-menu-img">
                   <img src={CDN_URL + item.imageId} />
-                  <button
-                    className="primary"
-                    onClick={() => handleAddItem(item)}
-                  >
-                    Add
-                  </button>
+                  <button onClick={() => handleAddItem(item)}>Add</button>
                 </div>
               </li>
             ))}

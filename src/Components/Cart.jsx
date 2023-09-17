@@ -30,10 +30,12 @@ const Cart = () => {
 
   if (cartItems.length === 0) {
     return (
-      <h2>
-        Your cart is empty. Please add some items by visiting{" "}
-        <Link to="/">home</Link>
-      </h2>
+      <div className="empty-cart">
+        <h1>
+          Your cart is empty. Please add some items by visiting{" "}
+          <Link to="/">home</Link>
+        </h1>
+      </div>
     );
   }
 
