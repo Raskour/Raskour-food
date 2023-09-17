@@ -281,6 +281,15 @@ input[type="text"] {
   padding-inline: 1rem;
 }
 
+.time {
+  font-size: var(--font-size-sm);
+  color: grey;
+}
+
+.res-card-info h2 {
+  font-size: var(--font-size-md);
+}
+
 .top-res-btn {
   margin-block: 1rem;
   margin-inline-start: auto;

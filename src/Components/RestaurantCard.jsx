@@ -5,9 +5,9 @@ const RestaurantCard = ({ resData }) => {
       <img className="" src={CDN_URL + resData.cloudinaryImageId} />
       <div className="res-card-info">
         <h2 className="">{resData.name}</h2>
-        <strong>Food: {resData.cuisines}</strong>
-        <span>{resData.avgRating} stars</span>
-        <span>{resData.deliveryTime} mins</span>
+        <span>Food: {resData.cuisines}</span>
+        <span>{resData.avgRating} ⭐</span>
+        <span className="time">{resData.deliveryTime} mins</span>
       </div>
     </article>
   );

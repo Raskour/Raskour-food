@@ -67,7 +67,7 @@ const Home = () => {
           setFilteredResList(filteredList);
         }}
       >
-        Top Restaurants
+        🏆 Top Restaurants
       </button>
 
       <ul className="res-card-container" aria-labelledby="res-syd">
