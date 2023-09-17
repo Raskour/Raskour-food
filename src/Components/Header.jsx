@@ -8,24 +8,25 @@ function Header() {
 
   return (
     <header>
-      <a href="/" className="logo">
-        <img src="https://placehold.jp/50x50.png" />
-        <span>Raskour Food</span>
-      </a>
-
-      <nav>
-        <ul>
-          <li>
-            <Link to="/">Home</Link>
-          </li>
-          <li>
-            <Link to="/contact">Help</Link>
-          </li>
-          <li>
-            <Link to="/cart">Cart-({cartItems.length})</Link>
-          </li>
-        </ul>
-      </nav>
+      <div className="header-wrapper">
+        <a href="/" className="logo">
+          <img src="https://placehold.jp/50x50.png" />
+          <span>Raskour Food</span>
+        </a>
+        <nav>
+          <ul>
+            <li>
+              <Link to="/">Home</Link>
+            </li>
+            <li>
+              <Link to="/contact">Help</Link>
+            </li>
+            <li>
+              <Link to="/cart">Cart-({cartItems.length})</Link>
+            </li>
+          </ul>
+        </nav>
+      </div>
     </header>
   );
 }

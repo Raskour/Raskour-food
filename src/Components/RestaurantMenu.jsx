@@ -35,31 +35,36 @@ const RestaurantMenu = () => {
     <SingleShimmer />
   ) : (
     <div>
-      <article>
-        <h1>
-          <strong>{res.name}</strong>
-        </h1>
-
-        <h2>{res.avgRating}- star</h2>
-        <h2>Menu</h2>
-        <br></br>
+      <h1>
+        <strong>{res.name}</strong>
+      </h1>
+      <span className="pill">⭐{res.avgRating}</span>
+      <div className="divider" />
+      <section>
+        <h2 className="sr-only">Menu</h2>
         <div>
-          <ul>
+          <ul className="flow">
             {res.menu.map((item) => (
-              <li key={item.id}>
-                <img src={CDN_URL + item.imageId} />
-                <h3>
-                  <strong>{item.title}</strong>
-                </h3>
-                <strong>Rs.{item.price}</strong>
-                <p>{item.description}</p>
-
-                <button onClick={() => handleAddItem(item)}>Add</button>
+              <li key={item.id} className="res-menu-wrapper">
+                <div className="res-menu-info">
+                  <h3>{item.title}</h3>
+                  <strong>Rs.{item.price}</strong>
+                  <p>{item.description}</p>
+                </div>
+                <div className="res-menu-img">
+                  <img src={CDN_URL + item.imageId} />
+                  <button
+                    className="primary"
+                    onClick={() => handleAddItem(item)}
+                  >
+                    Add
+                  </button>
+                </div>
               </li>
             ))}
           </ul>
         </div>
-      </article>
+      </section>
     </div>
   );
 };

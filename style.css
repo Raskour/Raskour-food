@@ -9,6 +9,7 @@
 :root {
   --page-max-width: 1280px;
   --input-width-lg: 400px;
+  --page-wrapper-margin-top: 2rem;
 
   --button-width: 120px;
   --input-height: 40px; /* form input field */
@@ -24,6 +25,7 @@
   --color-secondary: rgb(245, 231, 225);
   --color-tertiary: rgb(7, 122, 153);
   --color-neutral: rgb(66, 71, 84);
+  --color-secondary-dark: #d3d3d3;
   --box-shadow-subtle: 0 2px 2px #000;
   --border-radius-rg: 8px;
   --page-inline-padding: 12px;
@@ -84,6 +86,20 @@ textarea:active {
   border-color: black;
 }
 
+button {
+  min-width: 100px;
+  padding-inline: 1rem;
+  padding-block: 0.15rem;
+  appearance: none;
+  border-radius: 4px;
+  border-width: 1px;
+  cursor: pointer;
+  --default-hover: var(--color-secondary-dark);
+}
+
+button:hover {
+  background-color: var(--btn-hover, var(--default-hover));
+}
 /* utility class */
 .flow {
   --flow-space: 1em;
@@ -91,6 +107,15 @@ textarea:active {
 
 .flow > * + * {
   margin-top: var(--flow-space);
+}
+
+.pill {
+  display: inline-block;
+  padding-inline: 0.5rem;
+  padding-block: 0.15rem;
+  border: 1px solid var(--color-tertiary);
+  border-radius: var(--border-radius-rg);
+  font-size: var(--font-size-sm);
 }
 
 /* custom styles  --------------------------> */
@@ -123,20 +148,28 @@ a {
 .page_wrapper {
   max-width: min(90vw, var(--page-max-width));
   margin-inline: auto;
+  margin-block: var(--page-wrapper-margin-top);
 }
 
 /* --- header styling --- */
 header {
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-  font-size: var(--font-size-md);
-  padding-block: 0.5rem;
   box-shadow: rgba(27, 30, 36, 0.06) 0px 8px 16px,
     rgba(27, 30, 36, 0.04) 0px 0px 8px;
   position: sticky;
   top: 0px;
   background-color: var(--header-bg-color, #fff);
+  z-index: 1;
+}
+
+.header-wrapper {
+  display: flex;
+  align-items: center;
+  font-size: var(--font-size-md);
+  padding-block: 0.5rem;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  max-width: min(90vw, var(--page-max-width));
+  margin-inline: auto;
 }
 
 header a:has(img) {
@@ -205,7 +238,7 @@ input[type="text"] {
 /* divider */
 .divider {
   height: 1px;
-  background-color: grey;
+  background-color: var(--color-secondary-dark);
   margin-inline: auto;
   margin-block: 1rem;
 }
@@ -251,4 +284,38 @@ input[type="text"] {
 .top-res-btn {
   margin-block: 1rem;
   margin-inline-start: auto;
+}
+
+/* Restaurant Menu */
+.res-menu-wrapper {
+  display: flex;
+  --res-img-width: 200px;
+  border-bottom: 1px solid var(--color-secondary-dark);
+  padding-block-end: 1rem;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.res-menu-info {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  flex: 3;
+  flex-basis: 30ch;
+}
+
+.res-menu-img {
+  display: flex;
+  gap: 0.5rem;
+  flex-direction: column;
+  flex-basis: var(--res-img-width);
+  border-radius: var(--border-radius-rg);
+  overflow: hidden;
+  box-shadow: var(--box-shadow-sm);
+}
+
+.res-menu-img button {
+  align-self: center;
+  margin-block-end: 0.75rem;
+  border-color: var(--color-secondary-dark);
 }
