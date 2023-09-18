@@ -32,8 +32,8 @@ const Cart = () => {
     return (
       <div className="empty-cart">
         <h1>
-          Your cart is empty. Please add some items by visiting{" "}
-          <Link to="/">home</Link>
+          Your cart is empty. Please add some items by exploring range of menu
+          items available in the <Link to="/">Restaurants page</Link>
         </h1>
       </div>
     );

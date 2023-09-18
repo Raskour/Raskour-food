@@ -24,8 +24,8 @@ function Fav() {
     return (
       <div className="empty-cart">
         <h1>
-          Your cart is empty. Please add some items by visiting{" "}
-          <Link to="/">home</Link>
+          No favourites added yet. Add some favourites favourites&nbsp;
+          <Link to="/">Restaurants.</Link>
         </h1>
       </div>
     );
@@ -48,6 +48,37 @@ function Fav() {
       </div>
       <div>
         <ul className="flow">
+          {favItems.map((item) => (
+            <li key={item.id} className="cart-item">
+              <div>
+                <img
+                  src={CDN_URL + item.cloudinaryImageId}
+                  alt={item.name + " restaurant"}
+                />
+              </div>
+              <div className="cart-item-info">
+                <h2>{item.name}</h2>
+                <span>Food: {item.cuisines}</span>
+                <span>{item.avgRating} ⭐</span>
+                <span className="time">{item.deliveryTime} mins</span>
+                <button
+                  onClick={() => handleRemove(item.id)}
+                  className="danger"
+                >
+                  Remove <DeleteIcon />
+                </button>
+              </div>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </section>
+  );
+}
+export default Fav;
+
+/* 
+       <ul className="flow">
           {favItems.map((item, index) => (
             <li key={index} className="cart-item">
               <div>
@@ -67,8 +98,5 @@ function Fav() {
             </li>
           ))}
         </ul>
-      </div>
-    </section>
-  );
-}
-export default Fav;
+
+*/

@@ -6,7 +6,7 @@ import Header from "./Components/Header";
 import Home from "./Components/Home";
 import Help from "./Components/Help";
 import Error from "./Components/Error";
-import RestaurantMenu from "./Components/RestaurantMenu";
+import Restaurant from "./Components/RestaurantMenu";
 import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
 import { Provider } from "react-redux";
 import appStore from "./utils/appStore";
@@ -60,7 +60,7 @@ const appRouter = createBrowserRouter([
         path: "/restaurants/:resId",
         element: (
           <PageLayout>
-            <RestaurantMenu />
+            <Restaurant />
           </PageLayout>
         ),
       },

@@ -136,6 +136,19 @@ button:hover {
   background-color: rgba(201, 34, 29, 0.5);
 }
 
+.icon-btn {
+  appearance: none;
+  border: none;
+  background: none;
+  padding: 0.15rem;
+  min-width: auto;
+  border-radius: 50%;
+}
+
+.icon-btn:hover svg {
+  fill: var(--color-primary);
+}
+
 /* custom styles  --------------------------> */
 a {
   color: inherit;
@@ -315,6 +328,11 @@ input[type="text"] {
   flex-direction: column;
   padding-block: 0.5rem;
   padding-inline: 1rem;
+}
+
+.res-card-info div:has(h2) {
+  display: flex;
+  justify-content: space-between;
 }
 
 .time {
