@@ -1,16 +1,17 @@
 import { Link } from "react-router-dom";
+import logo from "../logo/raskour-logo.svg";
 import { useSelector } from "react-redux";
-import { LOGO_URL } from "../utils/constants";
 
 function Header() {
   // subscribing to the store using a selector
   const cartItems = useSelector((store) => store.cart.items);
+  const favItems = useSelector((store) => store.fav.items);
 
   return (
     <header>
       <div className="header-wrapper">
         <a href="/" className="logo">
-          <img src="https://placehold.jp/50x50.png" />
+          <img src={logo} alt="Logo" width={60} height={60} />
           <span>Raskour Food</span>
         </a>
         <nav>
@@ -24,6 +25,7 @@ function Header() {
             <li>
               <Link to="/cart">Cart-({cartItems.length})</Link>
             </li>
+            <Link to="/fav">Fav- ({favItems.length})</Link>
           </ul>
         </nav>
       </div>

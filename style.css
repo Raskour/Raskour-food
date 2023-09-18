@@ -210,12 +210,9 @@ nav li > a {
   text-decoration: none;
 }
 
-header a:hover {
-  color: var(--color-primary);
-}
-
+header a:hover,
 header a:focus {
-  box-shadow: none;
+  color: var(--color-primary);
 }
 
 .search-container {

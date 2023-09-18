@@ -2,33 +2,25 @@ import { useDispatch, useSelector } from "react-redux";
 import toast from "react-hot-toast";
 
 import { CDN_URL } from "../utils/constants";
-import { removeItem, addItem, clearCart } from "../utils/cartSlice";
+import { removeFav, addFav, clearFav } from "../utils/favSlice";
 import { Link } from "react-router-dom";
 import { CartIcon, DeleteIcon } from "../commons/icons";
 
-const Cart = () => {
-  const cartItems = useSelector((store) => store.cart.items);
+function Fav() {
+  const favItems = useSelector((store) => store.fav.items);
   const dispatch = useDispatch();
 
-  function getTotalPrice() {
-    let sum = 0;
-    for (i = 0; i < cartItems.length; i++) {
-      sum += cartItems[i].price;
-    }
-    return sum;
-  }
-
   function handleRemove(id) {
-    dispatch(removeItem(id));
-    toast.success("Item has been removed from the cart!");
+    dispatch(removeFav(id));
+    toast.success("Item has been removed from the Favourites!");
   }
 
   function handleClearCart() {
-    dispatch(clearCart());
-    toast.success("Cart has been cleared!");
+    dispatch(clearFav());
+    toast.success("Favourites has been cleared!");
   }
 
-  if (cartItems.length === 0) {
+  if (favItems.length === 0) {
     return (
       <div className="empty-cart">
         <h1>
@@ -43,20 +35,20 @@ const Cart = () => {
     <section className="flow">
       <div className="cart-heading">
         <h1>
-          Cart
+          Favourites
           <span>
-            {cartItems.length} {cartItems.length > 1 ? "Items" : "Item"}
+            {favItems.length} {favItems.length > 1 ? "Items" : "Item"}
           </span>
         </h1>
         <div>
           <button onClick={handleClearCart} className="danger">
-            Clear Cart <DeleteIcon />
+            Clear Fav <DeleteIcon />
           </button>
         </div>
       </div>
       <div>
         <ul className="flow">
-          {cartItems.map((item, index) => (
+          {favItems.map((item, index) => (
             <li key={index} className="cart-item">
               <div>
                 <img src={CDN_URL + item.imageId} alt={item.description} />
@@ -76,14 +68,7 @@ const Cart = () => {
           ))}
         </ul>
       </div>
-      <footer class="cart-footer">
-        <div>
-          <strong>Total Price: &nbsp;</strong>
-          <span>AUD {getTotalPrice()}</span>
-        </div>
-        <button className="btn-primary">Pay Now</button>
-      </footer>
     </section>
   );
-};
-export default Cart;
+}
+export default Fav;

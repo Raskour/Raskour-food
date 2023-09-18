@@ -11,7 +11,7 @@ import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
 import { Provider } from "react-redux";
 import appStore from "./utils/appStore";
 import Cart from "./Components/Cart";
-
+import Fav from "./Components/Fav";
 // PageLayout
 
 const PageLayout = ({ children }) => {
@@ -69,6 +69,14 @@ const appRouter = createBrowserRouter([
         element: (
           <PageLayout>
             <Cart />
+          </PageLayout>
+        ),
+      },
+      {
+        path: "/fav",
+        element: (
+          <PageLayout>
+            <Fav />
           </PageLayout>
         ),
       },
