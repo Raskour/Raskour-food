@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import logo from "../logo/raskour-logo.svg";
 import { useSelector } from "react-redux";
+import { CartIcon, HeartIcon } from "../commons/icons";
 
 function Header() {
   // subscribing to the store using a selector
@@ -23,9 +24,15 @@ function Header() {
               <Link to="/help">Help</Link>
             </li>
             <li>
-              <Link to="/cart">Cart-({cartItems.length})</Link>
+              <Link to="/cart">
+                <CartIcon /> ({cartItems.length})
+              </Link>
             </li>
-            <Link to="/fav">Fav- ({favItems.length})</Link>
+            <li>
+              <Link to="/fav">
+                <HeartIcon /> ({favItems.length})
+              </Link>
+            </li>
           </ul>
         </nav>
       </div>
