@@ -69,7 +69,6 @@ const Home = () => {
       >
         🏆 Top Restaurants
       </button>
-
       <ul className="res-card-container" aria-labelledby="res-syd">
         {filteredResList.map((res) => (
           <li key={res.id} className="res-card">

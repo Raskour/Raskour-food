@@ -213,6 +213,12 @@ header a:has(img) {
   color: var(--color-primary);
 }
 
+nav {
+  position: var(--nav-position, fixed);
+  inset-block-start: 1rem;
+  inset-inline-end: 1rem;
+}
+
 nav ul {
   display: flex;
   gap: 16px;
@@ -229,8 +235,14 @@ nav li {
   justify-content: center;
 }
 
-header a:hover,
-header a:focus {
+/* Menu button */
+/* Reset button styling */
+.menu-btn {
+  all: unset;
+  display: var(--nav-button-display, flex);
+}
+
+header a:where(:hover, :focus) {
   color: var(--color-primary);
 }
 
@@ -267,17 +279,6 @@ input[type="text"] {
   flex: 1;
 }
 
-@media (min-width: 920px) {
-  input[type="text"] {
-    flex-basis: 400px;
-    flex-grow: 0;
-  }
-
-  .search-container {
-    gap: 1.5rem;
-  }
-}
-
 /* form search styles end ---- */
 
 /* divider */
@@ -290,17 +291,17 @@ input[type="text"] {
 
 /* Res card ---*/
 .res-card-container {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 2rem;
+  --min: 20ch;
+  --gap: 1rem;
+
+  display: grid;
+  grid-gap: var(--gap);
+  /* min() with 100% prevents overflow
+  in extra narrow spaces */
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, var(--min)), 1fr));
 }
 .res-card-container a {
   text-decoration: none;
-}
-
-.res-card-container li {
-  flex-basis: min(100%, 300px);
-  flex-grow: 1;
 }
 
 .res-card {
@@ -454,4 +455,24 @@ input[type="text"] {
 /* Help page */
 .help {
   max-width: 60ch;
+}
+
+/* Media query ----- */
+@media (min-width: 48rem) {
+  nav {
+    --nav-button-display: none;
+    --nav-position: static;
+  }
+
+  .res-card-container {
+    --min: 30ch;
+  }
+  input[type="text"] {
+    flex-basis: 400px;
+    flex-grow: 0;
+  }
+
+  .search-container {
+    gap: 1.5rem;
+  }
 }
