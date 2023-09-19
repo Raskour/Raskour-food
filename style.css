@@ -220,9 +220,36 @@ nav {
 }
 
 nav ul {
+  background: #fff;
+  box-shadow: var(--nav-list-shadow, -5px 0 11px 0 rgb(0 0 0 / 0.2));
+  padding: var(--nav-list-padding, 2rem);
+  visibility: var(--nav-list-visibility, visible);
   display: flex;
+  flex-direction: var(--nav-list-layout, column);
+  position: var(--nav-list-position, fixed);
   gap: 16px;
+  height: var(--nav-list-height, 100vh);
+  inset-block-start: 0; /* Logical property. Equivalent to top: 0; */
+  inset-inline-end: 0; /* Logical property. Equivalent to right: 0; */
+  width: var(--nav-list-width, min(16rem, 100vw));
+  transition: opacity 0.6s linear, visibility 0.3s linear;
 }
+
+/* Animating the list */
+@media (prefers-reduced-motion: no-preference) {
+  nav ul {
+    transition: transform 0.6s cubic-bezier(0.68, -0.55, 0.27, 1.55),
+      visibility 0.3s linear;
+  }
+}
+/* Hide the list on narrow viewports, if it comes after an element with
+   aria-expanded set to "false". */
+[aria-expanded="false"] + ul {
+  transform: var(--nav-list-transform, translateX(100%));
+  visibility: var(--nav-list-visibility, hidden);
+}
+
+/* --- */
 
 nav li > a {
   padding: 0.5rem 1rem;
@@ -232,7 +259,6 @@ nav li > a {
 nav li {
   display: inline-flex;
   align-items: center;
-  justify-content: center;
 }
 
 /* Menu button */
@@ -240,6 +266,15 @@ nav li {
 .menu-btn {
   all: unset;
   display: var(--nav-button-display, flex);
+  position: relative;
+  z-index: 1;
+  cursor: pointer;
+  padding-inline: 0.25rem;
+  padding-block: 0.15rem;
+}
+
+.menu-btn:where(:hover, :focus) svg {
+  fill: var(--color-primary);
 }
 
 header a:where(:hover, :focus) {
@@ -462,6 +497,20 @@ input[type="text"] {
   nav {
     --nav-button-display: none;
     --nav-position: static;
+  }
+
+  nav ul {
+    --nav-list-visibility: visible;
+    --nav-list-layout: row;
+    --nav-list-height: auto;
+    --nav-list-width: 100%;
+    --nav-list-shadow: none;
+    --nav-list-padding: 0;
+    --nav-list-position: static;
+  }
+
+  nav li {
+    align-items: center;
   }
 
   .res-card-container {

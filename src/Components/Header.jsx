@@ -1,3 +1,4 @@
+import { useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import logo from "../logo/raskour-logo.svg";
 import { useSelector } from "react-redux";
@@ -8,6 +9,28 @@ function Header() {
   const cartItems = useSelector((store) => store.cart.items);
   const favItems = useSelector((store) => store.fav.items);
 
+  const btnRef = useRef();
+
+  function handleEscape(e) {
+    if (e.code === "Escape") {
+      setExpanded(false);
+
+      // bring focus back to the menu button
+      btnRef.current?.focus({ focusVisible: true });
+    }
+  }
+
+  function openNav(e) {
+    setExpanded(!expanded);
+
+    setTimeout(() => {
+      // move the focus to first element
+      document.querySelector('a[data-id="home-link').focus();
+    }, 50);
+  }
+
+  const [expanded, setExpanded] = useState(false);
+
   return (
     <header>
       <div className="header-wrapper">
@@ -15,13 +38,15 @@ function Header() {
           <img src={logo} alt="Logo" width={60} height={60} />
           <span>Raskour Food</span>
         </a>
-        <nav>
+        <nav id="mainnav" onKeyDown={handleEscape}>
           <button
+            ref={btnRef}
             type="button"
-            aria-expanded="false"
+            aria-expanded={expanded}
             aria-label="Menu"
             aria-controls="mainnav"
             className="menu-btn"
+            onClick={openNav}
           >
             <svg width="24" height="24" aria-hidden="true">
               <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z" />
@@ -29,7 +54,9 @@ function Header() {
           </button>
           <ul>
             <li>
-              <Link to="/">Home</Link>
+              <Link to="/" data-id="home-link">
+                Home
+              </Link>
             </li>
             <li>
               <Link to="/help">Help</Link>
