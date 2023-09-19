@@ -1,0 +1,52 @@
+Arguments: 
+  C:\Program Files\nodejs\node.exe C:\Users\singh\AppData\Roaming\npm\node_modules\yarn\bin\yarn.js add react-hot-toast
+
+PATH: 
+  C:\Users\singh\bin;C:\Program Files\Git\mingw64\bin;C:\Program Files\Git\usr\local\bin;C:\Program Files\Git\usr\bin;C:\Program Files\Git\usr\bin;C:\Program Files\Git\mingw64\bin;C:\Program Files\Git\usr\bin;C:\Users\singh\bin;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0;C:\WINDOWS\System32\OpenSSH;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Program Files\NVIDIA Corporation\NVIDIA NvDLISR;C:\Program Files\Git\cmd;C:\Program Files\nodejs;%SystemRoot%\system32;%SystemRoot%;%SystemRoot%\System32\Wbem;%SYSTEMROOT%\System32\WindowsPowerShell\v1.0;%SYSTEMROOT%\System32\OpenSSH;C:\Users\singh\AppData\Local\Microsoft\WindowsApps;C:\Users\singh\AppData\Local\Programs\Microsoft VS Code\bin;C:\Users\singh\AppData\Local\Programs\Hyper\resources\bin;C:\Users\singh\AppData\Roaming\npm;C:\Program Files\Git\usr\bin\vendor_perl;C:\Program Files\Git\usr\bin\core_perl
+
+Yarn version: 
+  1.22.19
+
+Node version: 
+  16.15.1
+
+Platform: 
+  win32 x64
+
+Trace: 
+  Error: EPERM: operation not permitted, unlink 'C:\Users\singh\Desktop\workspace\Namaste React\node_modules\@lmdb\lmdb-win32-x64\node.abi93.node'
+
+npm manifest: 
+  {
+    "name": "namaste-react",
+    "version": "1.0.0",
+    "description": "Namaste React",
+    "main": "App.js",
+    "scripts": {
+      "start": "parcel index.html",
+      "build": "parcel buid index.html",
+      "test": "jest"
+    },
+    "author": "rasmeet",
+    "license": "ISC",
+    "devDependencies": {
+      "buffer": "^6.0.3",
+      "parcel": "^2.9.3",
+      "postcss": "^8.4.29",
+      "process": "^0.11.10",
+      "tailwindcss": "^3.3.3"
+    },
+    "dependencies": {
+      "@reduxjs/toolkit": "^1.9.5",
+      "react": "^18.2.0",
+      "react-dom": "^18.2.0",
+      "react-redux": "^8.1.2",
+      "react-router-dom": "^6.15.0"
+    }
+  }
+
+yarn manifest: 
+  No manifest
+
+Lockfile: 
+  No lockfile

@@ -1,7 +1,7 @@
 {
-  "name": "namaste-react",
+  "name": "raskour-food",
   "version": "1.0.0",
-  "description": "Namaste React",
+  "description": "Raskour Food Restaurant",
   "main": "App.js",
   "scripts": {
     "start": "parcel index.html",

@@ -1,7 +1,10 @@
 import { useDispatch, useSelector } from "react-redux";
+import toast from "react-hot-toast";
+
 import { CDN_URL } from "../utils/constants";
 import { removeItem, addItem, clearCart } from "../utils/cartSlice";
 import { Link } from "react-router-dom";
+import { CartIcon, DeleteIcon } from "../commons/icons";
 
 const Cart = () => {
   const cartItems = useSelector((store) => store.cart.items);
@@ -17,58 +20,70 @@ const Cart = () => {
 
   function handleRemove(id) {
     dispatch(removeItem(id));
+    toast.success("Item has been removed from the cart!");
   }
 
   function handleClearCart() {
     dispatch(clearCart());
+    toast.success("Cart has been cleared!");
   }
 
   if (cartItems.length === 0) {
     return (
-      <h2>
-        Your cart is empty. Please add some items by visiting{" "}
-        <Link to="/">home</Link>
-      </h2>
+      <div className="empty-cart">
+        <h1>
+          Your cart is empty. Please add some items by exploring range of menu
+          items available in the <Link to="/">Restaurants page</Link>
+        </h1>
+      </div>
     );
   }
 
   return (
-    <div>
-      <h1 className="">Cart</h1>
-      <div>
-        <button onClick={handleClearCart}>Clear Cart</button>
+    <section className="flow">
+      <div className="cart-heading">
+        <h1>
+          Cart
+          <span>
+            {cartItems.length} {cartItems.length > 1 ? "Items" : "Item"}
+          </span>
+        </h1>
+        <div>
+          <button onClick={handleClearCart} className="danger">
+            Clear Cart <DeleteIcon />
+          </button>
+        </div>
       </div>
       <div>
-        <ul>
+        <ul className="flow">
           {cartItems.map((item, index) => (
-            <li key={index}>
+            <li key={index} className="cart-item">
               <div>
                 <img src={CDN_URL + item.imageId} alt={item.description} />
-
-                <div>
-                  <h2>{item.title}</h2>
-                  <p>{item.description}</p>
-                  <strong>Rs.{item.price}</strong>
-                  <div>
-                    <button onClick={() => handleRemove(item.id)}>
-                      Remove
-                    </button>
-                  </div>
-                </div>
+              </div>
+              <div className="cart-item-info">
+                <h2>{item.title}</h2>
+                <p>{item.description}</p>
+                <strong>AUD.{item.price}</strong>
+                <button
+                  onClick={() => handleRemove(item.id)}
+                  className="danger"
+                >
+                  Remove <DeleteIcon />
+                </button>
               </div>
             </li>
           ))}
         </ul>
-        <div>
-          <strong>Total Price:{getTotalPrice()} </strong>
-        </div>
-        <div>
-          <button>
-            <strong>Pay Now</strong>
-          </button>
-        </div>
       </div>
-    </div>
+      <footer class="cart-footer">
+        <div>
+          <strong>Total Price: &nbsp;</strong>
+          <span>AUD {getTotalPrice()}</span>
+        </div>
+        <button className="btn-primary">Pay Now</button>
+      </footer>
+    </section>
   );
 };
 export default Cart;

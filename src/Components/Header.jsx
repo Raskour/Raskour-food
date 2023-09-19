@@ -1,39 +1,79 @@
+import { useRef, useState } from "react";
 import { Link } from "react-router-dom";
+import logo from "../logo/raskour-logo.svg";
 import { useSelector } from "react-redux";
-import { LOGO_URL } from "../utils/constants";
+import { CartIcon, HeartIcon } from "../commons/icons";
 
 function Header() {
   // subscribing to the store using a selector
   const cartItems = useSelector((store) => store.cart.items);
+  const favItems = useSelector((store) => store.fav.items);
+
+  const btnRef = useRef();
+
+  function handleEscape(e) {
+    if (e.code === "Escape") {
+      setExpanded(false);
+
+      // bring focus back to the menu button
+      btnRef.current?.focus({ focusVisible: true });
+    }
+  }
+
+  function openNav(e) {
+    setExpanded(!expanded);
+
+    setTimeout(() => {
+      // move the focus to first element
+      document.querySelector('a[data-id="home-link').focus();
+    }, 50);
+  }
+
+  const [expanded, setExpanded] = useState(false);
 
   return (
-    <header className=" ">
-      <a href="/" className="">
-        <img src={LOGO_URL} width={100} />
-        <span>
-          <b>Ras Food</b>
-        </span>
-      </a>
-
-      <nav className="">
-        <ul className="">
-          <li className="">
-            <Link to="/" className="">
-              Home
-            </Link>
-          </li>
-          <li className="">
-            <Link to="/contact" className="">
-              Help
-            </Link>
-          </li>
-          <li className="">
-            <Link to="/cart" className="">
-              Cart-({cartItems.length})
-            </Link>
-          </li>
-        </ul>
-      </nav>
+    <header>
+      <div className="header-wrapper">
+        <a href="/" className="logo">
+          <img src={logo} alt="Logo" width={60} height={60} />
+          <span>Raskour Food</span>
+        </a>
+        <nav id="mainnav" onKeyDown={handleEscape}>
+          <button
+            ref={btnRef}
+            type="button"
+            aria-expanded={expanded}
+            aria-label="Menu"
+            aria-controls="mainnav"
+            className="menu-btn"
+            onClick={openNav}
+          >
+            <svg width="24" height="24" aria-hidden="true">
+              <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z" />
+            </svg>
+          </button>
+          <ul>
+            <li>
+              <Link to="/" data-id="home-link">
+                Home
+              </Link>
+            </li>
+            <li>
+              <Link to="/help">Help</Link>
+            </li>
+            <li>
+              <Link to="/cart">
+                <CartIcon /> ({cartItems.length})
+              </Link>
+            </li>
+            <li>
+              <Link to="/fav">
+                <HeartIcon /> ({favItems.length})
+              </Link>
+            </li>
+          </ul>
+        </nav>
+      </div>
     </header>
   );
 }

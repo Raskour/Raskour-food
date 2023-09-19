@@ -1,25 +1,23 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
+import { Toaster } from "react-hot-toast";
+
 import Header from "./Components/Header";
-import Body from "./Components/Body";
-import Contact from "./Components/Contact";
+import Home from "./Components/Home";
+import Help from "./Components/Help";
 import Error from "./Components/Error";
-import RestaurantMenu from "./Components/RestaurantMenu";
+import Restaurant from "./Components/RestaurantMenu";
 import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
 import { Provider } from "react-redux";
 import appStore from "./utils/appStore";
 import Cart from "./Components/Cart";
-
+import Fav from "./Components/Fav";
 // PageLayout
 
 const PageLayout = ({ children }) => {
   return (
-    <main>
-      <div
-        style={{ maxWidth: 980, paddingInline: "24px", marginInline: "auto" }}
-      >
-        {children}
-      </div>
+    <main className="page_wrapper" id="main-content">
+      {children}
     </main>
   );
 };
@@ -30,6 +28,7 @@ function AppBody() {
       <div className="app">
         <Header />
         <Outlet />
+        <Toaster />
       </div>
     </Provider>
   );
@@ -44,26 +43,42 @@ const appRouter = createBrowserRouter([
         path: "/",
         element: (
           <PageLayout>
-            <Body />
+            <Home />
           </PageLayout>
         ),
       },
 
       {
-        path: "/contact",
-        element: <Contact />,
+        path: "/help",
+        element: (
+          <PageLayout>
+            <Help />
+          </PageLayout>
+        ),
       },
       {
         path: "/restaurants/:resId",
         element: (
           <PageLayout>
-            <RestaurantMenu />
+            <Restaurant />
           </PageLayout>
         ),
       },
       {
         path: "/cart",
-        element: <Cart />,
+        element: (
+          <PageLayout>
+            <Cart />
+          </PageLayout>
+        ),
+      },
+      {
+        path: "/fav",
+        element: (
+          <PageLayout>
+            <Fav />
+          </PageLayout>
+        ),
       },
     ],
     errorElement: <Error />,

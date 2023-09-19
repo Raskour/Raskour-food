@@ -5,7 +5,7 @@ import Shimmer from "./Shimmer";
 import { Link } from "react-router-dom";
 import useOnlineStatus from "../utils/useOnlineStatus";
 
-const Body = () => {
+const Home = () => {
   const [restaurantList, setRestaurantList] = useState([]);
   const [filteredResList, setFilteredResList] = useState([]);
 
@@ -31,19 +31,23 @@ const Body = () => {
   return restaurantList.length === 0 ? (
     <Shimmer />
   ) : (
-    <div className="body">
-      <div className="filter flex">
-        <div className="search m-4 p-4">
+    <div>
+      <div className="search-container">
+        <h1 id="res-syd">Restaurants in Sydney</h1>
+        <form role="search">
+          <label className="sr-only" htmlFor="search">
+            Search Restaurant:
+          </label>
           <input
             type="text"
-            className="border border-solid border-black"
             value={searchText}
             onChange={(e) => setSearchText(e.target.value)}
+            id="search"
+            autoComplete="true"
           />
-
           <button
-            className="px-4 py-2 bg-cyan-600 m-4"
-            onClick={() => {
+            onClick={(event) => {
+              event.preventDefault();
               const filteredRes = restaurantList.filter((res) =>
                 res.name.toLowerCase().includes(searchText.toLowerCase())
               );
@@ -52,29 +56,29 @@ const Body = () => {
           >
             Search
           </button>
-        </div>
-        <div className="flex items-center">
-          <button
-            className="px-4 py-2 bg-cyan-300"
-            onClick={() => {
-              const filteredList = restaurantList.filter(
-                (res) => res.avgRating > 4
-              );
-              setFilteredResList(filteredList);
-            }}
-          >
-            Top Rated Restaurant
-          </button>
-        </div>
+        </form>
       </div>
-      <div className="flex flex-wrap">
+      <button
+        className="top-res-btn"
+        onClick={() => {
+          const filteredList = restaurantList.filter(
+            (res) => res.avgRating > 4
+          );
+          setFilteredResList(filteredList);
+        }}
+      >
+        🏆 Top Restaurants
+      </button>
+      <ul className="res-card-container" aria-labelledby="res-syd">
         {filteredResList.map((res) => (
-          <Link key={res.id} to={"/restaurants/" + res.id}>
-            <RestaurantCard resData={res} />
-          </Link>
+          <li key={res.id} className="res-card">
+            <Link to={"/restaurants/" + res.id}>
+              <RestaurantCard resData={res} />
+            </Link>
+          </li>
         ))}
-      </div>
+      </ul>
     </div>
   );
 };
-export default Body;
+export default Home;

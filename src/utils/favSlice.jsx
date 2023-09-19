@@ -1,16 +1,16 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-const cartSlice = createSlice({
-  name: "cart",
+const favItems = createSlice({
+  name: "fav",
   initialState: {
     items: [],
   },
 
   reducers: {
-    addItem: (state, action) => {
+    addFav: (state, action) => {
       state.items.push(action.payload);
     },
-    removeItem: (state, action) => {
+    removeFav: (state, action) => {
       const itemId = action.payload;
 
       // remove this particular item with given id from the cart items present in the store
@@ -19,12 +19,12 @@ const cartSlice = createSlice({
         items: state.items.filter((item) => item.id != itemId),
       };
     },
-    clearCart: (state) => {
+    clearFav: (state) => {
       state.items.length = 0;
     },
   },
 });
 
-export const { addItem, removeItem, clearCart } = cartSlice.actions;
+export const { addFav, removeFav, clearFav } = favItems.actions;
 
-export default cartSlice.reducer;
+export default favItems.reducer;
