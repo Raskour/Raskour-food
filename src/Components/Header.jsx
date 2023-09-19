@@ -22,11 +22,6 @@ function Header() {
 
   function openNav(e) {
     setExpanded(!expanded);
-
-    setTimeout(() => {
-      // move the focus to first element
-      document.querySelector('a[data-id="home-link').focus();
-    }, 50);
   }
 
   const [expanded, setExpanded] = useState(false);
@@ -54,9 +49,7 @@ function Header() {
           </button>
           <ul>
             <li>
-              <Link to="/" data-id="home-link">
-                Home
-              </Link>
+              <Link to="/">Home</Link>
             </li>
             <li>
               <Link to="/help">Help</Link>
