@@ -1,5 +1,5 @@
-import { useRef, useState } from "react";
-import { Link } from "react-router-dom";
+import { useRef, useState, useEffect } from "react";
+import { Link, useLocation } from "react-router-dom";
 import logo from "../logo/raskour-logo.svg";
 import { useSelector } from "react-redux";
 import { CartIcon, HeartIcon } from "../commons/icons";
@@ -10,6 +10,15 @@ function Header() {
   const favItems = useSelector((store) => store.fav.items);
 
   const btnRef = useRef();
+  const [expanded, setExpanded] = useState(false);
+
+  const location = useLocation();
+
+  useEffect(() => {
+    if (expanded) {
+      setExpanded(false);
+    }
+  }, [location]);
 
   function handleEscape(e) {
     if (e.code === "Escape") {
@@ -23,8 +32,6 @@ function Header() {
   function openNav(e) {
     setExpanded(!expanded);
   }
-
-  const [expanded, setExpanded] = useState(false);
 
   return (
     <header>

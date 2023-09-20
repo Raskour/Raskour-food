@@ -501,6 +501,7 @@ input[type="text"] {
 
   nav ul {
     --nav-list-visibility: visible;
+    --nav-list-transform: none;
     --nav-list-layout: row;
     --nav-list-height: auto;
     --nav-list-width: 100%;

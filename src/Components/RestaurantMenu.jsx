@@ -5,7 +5,6 @@ import { CDN_URL } from "../utils/constants";
 import { useParams } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { addItem } from "../utils/cartSlice";
-import { addFav } from "../utils/favSlice";
 
 const RestaurantMenu = () => {
   // Approach 2. using fake API that will get us Restaurant by id from remote server
@@ -14,11 +13,6 @@ const RestaurantMenu = () => {
   // Extracting resId param from the url.
   const { resId } = useParams();
   const dispatch = useDispatch(); // this is a hook
-
-  const handleAddFav = (item) => {
-    dispatch(addFav(item));
-    toast.success("Item has been added successfully!");
-  };
 
   const handleAddItem = (item) => {
     dispatch(addItem(item));
@@ -63,7 +57,6 @@ const RestaurantMenu = () => {
                 <div className="res-menu-img">
                   <img src={CDN_URL + item.imageId} />
                   <button onClick={() => handleAddItem(item)}>Add</button>
-                  <button onClick={() => handleAddFav(item)}>Fav</button>
                 </div>
               </li>
             ))}
