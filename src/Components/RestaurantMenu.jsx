@@ -26,7 +26,7 @@ const RestaurantMenu = () => {
 
   const fetchResById = async function (resId) {
     const res = await fetch(
-      "https://raskour-food-api.vercel.app/api/restaurants" + resId
+      "https://raskour-food-api.vercel.app/api/restaurants/" + resId
     );
     const data = await res.json();
 
@@ -37,7 +37,7 @@ const RestaurantMenu = () => {
   // const res = resList.find((res) => res.data.data.id === resId);
 
   return res === null ? (
-    <SingleShimmer />
+    <p>Loading...</p>
   ) : (
     <div>
       <h1>
