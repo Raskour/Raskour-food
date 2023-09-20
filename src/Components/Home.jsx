@@ -16,7 +16,9 @@ const Home = () => {
   }, []);
 
   const fetchData = async () => {
-    const res = await fetch("http://localhost:3000/api/restaurants");
+    const res = await fetch(
+      "https://raskour-food-api.vercel.app/api/restaurants"
+    );
     const data = await res.json(); // deserialising using json()
 
     setRestaurantList(data);
@@ -29,7 +31,7 @@ const Home = () => {
     return <h1>Looks like you are offline!! Check your internet connection</h1>;
 
   return restaurantList.length === 0 ? (
-    <Shimmer />
+    <p>Loading...</p>
   ) : (
     <div>
       <div className="search-container">

@@ -25,7 +25,9 @@ const RestaurantMenu = () => {
   }, []);
 
   const fetchResById = async function (resId) {
-    const res = await fetch("http://localhost:3000/api/restaurants/" + resId);
+    const res = await fetch(
+      "https://raskour-food-api.vercel.app/api/restaurants" + resId
+    );
     const data = await res.json();
 
     setRes(data);
