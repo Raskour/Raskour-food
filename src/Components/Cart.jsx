@@ -5,7 +5,7 @@ import { CDN_URL } from "../utils/constants";
 import { removeItem, addItem, clearCart } from "../utils/cartSlice";
 import { Link } from "react-router-dom";
 import { CartIcon, DeleteIcon } from "../commons/icons";
-import ShimmerCart from "..Components/ShimmerCart";
+import ShimmerCart from "./ShimmerCart";
 
 const Cart = () => {
   const cartItems = useSelector((store) => store.cart.items);
