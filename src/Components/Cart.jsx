@@ -5,6 +5,7 @@ import { CDN_URL } from "../utils/constants";
 import { removeItem, addItem, clearCart } from "../utils/cartSlice";
 import { Link } from "react-router-dom";
 import { CartIcon, DeleteIcon } from "../commons/icons";
+import { ShimmerCart } from "..Components/ShimmerCart";
 
 const Cart = () => {
   const cartItems = useSelector((store) => store.cart.items);
@@ -39,7 +40,9 @@ const Cart = () => {
     );
   }
 
-  return (
+  return cartItems.length === 0 ? (
+    <ShimmerCart />
+  ) : (
     <section className="flow">
       <div className="cart-heading">
         <h1>
