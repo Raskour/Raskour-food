@@ -2,7 +2,7 @@ import { useRef, useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import logo from "../logo/raskour-logo.svg";
 import { useSelector } from "react-redux";
-import { CartIcon, HeartIcon } from "../commons/icons";
+import { CartIcon, CloseIcon, HeartIcon, MenuIcon } from "../commons/icons";
 
 function Header() {
   // subscribing to the store using a selector
@@ -50,9 +50,7 @@ function Header() {
             className="menu-btn"
             onClick={openNav}
           >
-            <svg width="24" height="24" aria-hidden="true">
-              <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z" />
-            </svg>
+            {expanded ? <CloseIcon /> : <MenuIcon />}
           </button>
           <ul>
             <li>
