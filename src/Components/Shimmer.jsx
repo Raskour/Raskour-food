@@ -1,11 +1,15 @@
 const Shimmer = () => {
-    return (
-        <div className="shimmer-container">
-            <div className="shimmer-card">Cards</div>
-            <div className="shimmer-card">Cards</div>
-            <div className="shimmer-card">Cards</div>
-            <div className="shimmer-card">Cards</div>
-        </div>
-    )
-}
-export default Shimmer
+  return (
+    <div className="res-card-container" style={{ marginBlockStart: 130 }}>
+      <div className="res-card shimmer" />
+      <div className="res-card shimmer" />
+      <div className="res-card shimmer" />
+      <div className="res-card shimmer" />
+      <div className="res-card shimmer" />
+      <div className="res-card shimmer" />
+      <div className="res-card shimmer" />
+      <div className="res-card shimmer" />
+    </div>
+  );
+};
+export default Shimmer;

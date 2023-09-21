@@ -31,7 +31,7 @@ const Home = () => {
     return <h1>Looks like you are offline!! Check your internet connection</h1>;
 
   return restaurantList.length === 0 ? (
-    <p>Loading...</p>
+    <Shimmer />
   ) : (
     <div>
       <div className="search-container">

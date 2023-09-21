@@ -371,6 +371,12 @@ input[type="text"] {
   justify-content: space-between;
 }
 
+.shimmer {
+  height: var(--shimmer-card-height, 308px);
+  width: var(--shimmer-card-height, 308px);
+  background-color: var(--color-secondary-dark);
+}
+
 .time {
   font-size: var(--font-size-sm);
   color: grey;
