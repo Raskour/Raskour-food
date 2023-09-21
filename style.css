@@ -459,7 +459,6 @@ input[type="text"] {
 .cart-item-info {
   display: flex;
   flex-basis: 80ch;
-  flex-shrink: 0;
   flex-direction: column;
 }
 

@@ -12,7 +12,7 @@ const Cart = () => {
 
   function getTotalPrice() {
     let sum = 0;
-    for (i = 0; i < cartItems.length; i++) {
+    for (let i = 0; i < cartItems.length; i++) {
       sum += cartItems[i].price;
     }
     return sum;
