@@ -76,27 +76,3 @@ function Fav() {
   );
 }
 export default Fav;
-
-/* 
-       <ul className="flow">
-          {favItems.map((item, index) => (
-            <li key={index} className="cart-item">
-              <div>
-                <img src={CDN_URL + item.imageId} alt={item.description} />
-              </div>
-              <div className="cart-item-info">
-                <h2>{item.title}</h2>
-                <p>{item.description}</p>
-                <strong>AUD.{item.price}</strong>
-                <button
-                  onClick={() => handleRemove(item.id)}
-                  className="danger"
-                >
-                  Remove <DeleteIcon />
-                </button>
-              </div>
-            </li>
-          ))}
-        </ul>
-
-*/

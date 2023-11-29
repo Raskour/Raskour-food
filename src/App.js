@@ -9,9 +9,13 @@ import Error from "./Components/Error";
 import Restaurant from "./Components/RestaurantMenu";
 import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
 import { Provider } from "react-redux";
+//Provider is required to access the redux store.
 import appStore from "./utils/appStore";
 import Cart from "./Components/Cart";
 import Fav from "./Components/Fav";
+import PrivateRoute from "./Components/PrivateRoute";
+import Login from "./Components/Login";
+import { AuthProvider } from "./context/AuthContext";
 // PageLayout
 
 const PageLayout = ({ children }) => {
@@ -36,48 +40,66 @@ function AppBody() {
 
 const appRouter = createBrowserRouter([
   {
+    path: "/login",
+    element: (
+      <PageLayout>
+        <Login />
+      </PageLayout>
+    ),
+  },
+  {
     path: "/",
     element: <AppBody />,
     children: [
       {
         path: "/",
         element: (
-          <PageLayout>
-            <Home />
-          </PageLayout>
+          <PrivateRoute>
+            <PageLayout>
+              <Home />
+            </PageLayout>
+          </PrivateRoute>
         ),
       },
 
       {
         path: "/help",
         element: (
-          <PageLayout>
-            <Help />
-          </PageLayout>
+          <PrivateRoute>
+            <PageLayout>
+              <Help />
+            </PageLayout>
+          </PrivateRoute>
         ),
       },
       {
         path: "/restaurants/:resId",
         element: (
-          <PageLayout>
-            <Restaurant />
-          </PageLayout>
+          <PrivateRoute>
+            <PageLayout>
+              <Restaurant />
+            </PageLayout>
+          </PrivateRoute>
         ),
       },
       {
         path: "/cart",
         element: (
-          <PageLayout>
-            <Cart />
-          </PageLayout>
+          <PrivateRoute>
+            <PageLayout>
+              <Cart />
+            </PageLayout>
+          </PrivateRoute>
         ),
       },
       {
         path: "/fav",
         element: (
-          <PageLayout>
-            <Fav />
-          </PageLayout>
+          <PrivateRoute>
+            <PageLayout>
+              <Fav />
+            </PageLayout>
+          </PrivateRoute>
         ),
       },
     ],
@@ -87,4 +109,8 @@ const appRouter = createBrowserRouter([
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
-root.render(<RouterProvider router={appRouter} />);
+root.render(
+  <AuthProvider>
+    <RouterProvider router={appRouter} />
+  </AuthProvider>
+);

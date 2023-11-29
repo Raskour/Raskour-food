@@ -18,7 +18,7 @@ const RestaurantCard = ({ resData }) => {
 
   return (
     <article>
-      <img className="" src={CDN_URL + resData.cloudinaryImageId} />
+      <img src={CDN_URL + resData.cloudinaryImageId} width={308} height={194} />
       <div className="res-card-info">
         <div>
           <h2 className="">{resData.name}</h2>
